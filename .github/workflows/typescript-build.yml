@@ -7,11 +7,12 @@ on:
 
 jobs:
   TypeScript:
-    runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.x]
-        ts-version: [2, 3, next]
+        node-version: [14.x, 16.x]
+        ts-version: [2.x, 3.x, next]
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
 
     steps:
       - name: Checkout repo
