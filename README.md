@@ -1,4 +1,4 @@
-# TypeScript Builds (Template)
+# TypeScript Build (Template)
 
 Check multiple versions of TypeScript, Node, and OS via matrix builds with GitHub Actions.
 
