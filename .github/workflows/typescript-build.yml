@@ -1,0 +1,35 @@
+name: TypeScript Builds
+
+on:
+  schedule:
+    - cron: '22 6 * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+        ts-version: [2, 3, next]
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/lockfiles') }}
+          
+      - name: Install dependencies
+        run: yarn
+        
+      - name: Install TypeScript
+        run: yarn add -D typescript@${{ matrix.ts-version }}
+      
+      - name: Run a multi-line script
+        run: |
+          echo Add other steps to build,
+          echo test, or deploy your project.
